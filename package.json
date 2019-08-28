@@ -1,0 +1,42 @@
+{
+  "name": "nau-tab",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "build": "webpack",
+    "start": " webpack --progress --watch"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "eslint": "^4.7.2",
+    "eslint-config-nau": "^13.1.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.6",
+    "gulp-chrome-manifest": "0.0.13",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-eslint": "^4.0.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-useref": "^3.0.8",
+    "gulp-zip": "^4.0.0",
+    "run-sequence": "^2.2.0",
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2",
+    "wiredep": "^4.0.0"
+  },
+  "dependencies": {}
+}

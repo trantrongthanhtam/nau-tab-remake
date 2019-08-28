@@ -1,0 +1,573 @@
+html {
+	height: 100%;
+	box-sizing: border-box;
+	font-size: 10px; /*for easily calculate up rem*/
+}
+
+/* new approach to global box-sizing */
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	text-rendering: geometricPrecision; /*this will make thin font not being bolden by subpixel-antialias Chrome*/
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	color: white;
+	font-size: 1.8rem;
+	/*use native font-family for fastest rendering*/
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+
+	background-position: center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-color: #eee;
+}
+
+button {
+	cursor: pointer;
+}
+
+button:focus {
+	outline: none;
+}
+
+a,
+a:visited {
+	color: white;
+	-webkit-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+a:hover {
+	color: #eee;
+	-webkit-text-decoration-color: #977857;
+	-moz-text-decoration-color: #977857;
+	text-decoration-color: #977857;
+	-webkit-text-decoration-skip: ink;
+	text-decoration-skip: ink;
+}
+
+[type='radio'],
+[type='check'],
+input + label,
+.settings__label {
+	cursor: pointer;
+}
+
+fieldset {
+	margin-bottom: 1rem;
+}
+
+/**
+ * Main container
+ */
+.main {
+	height: 100%;
+	padding: 2rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 3fr 1fr;
+	grid-template-areas: 'tl tc tc tr' 'ml mc mc mr' 'bl bc bc br';
+}
+
+.main__item {
+	transform: translateZ(0);
+	display: flex;
+}
+
+.main__item--top-left {
+	grid-area: tl / tl / tc / tc;
+}
+
+.main__item--top-right {
+	grid-area: tr;
+	align-items: flex-start;
+	justify-content: flex-end;
+}
+
+.main__item--center {
+	grid-area: mc;
+
+	text-align: center;
+	text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+	/* recipe to vertical align center */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+}
+
+.main__item--bottom {
+	grid-area: bc;
+	max-width: 100%;
+	align-items: flex-end;
+}
+
+.main__item--bottom-left {
+	grid-area: bl;
+	align-items: flex-end;
+}
+
+.main__item--bottom-right {
+	grid-area: br;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.setting-btn {
+	/* compensate the hit padding */
+	margin-left: -1rem;
+	margin-bottom: -1rem;
+}
+
+/**
+ * Wallpaper background
+ */
+.wallpaper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-position: center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	transition: opacity 500ms;
+	opacity: 0;
+	z-index: 0;
+}
+
+.wallpaper--ready {
+	opacity: 1;
+}
+
+/**
+ * Quick links
+ */
+.quick-links {
+	margin: -1rem; /* compensate buttons padding */
+	opacity: 0.5;
+	-webkit-transition: opacity 200ms;
+	-o-transition: opacity 200ms;
+	transition: opacity 200ms;
+}
+.quick-links:hover {
+	opacity: 1;
+}
+
+/* Brand logo */
+.brand-logo {
+	display: inline-block;
+}
+
+.brand-logo svg {
+	height: 30px;
+	width: auto;
+}
+
+.brand-logo__link {
+	opacity: 0.5;
+	transition: all 0.5s ease;
+}
+
+.brand-logo__link:hover {
+	opacity: 1;
+}
+
+.quick-links__list {
+	display: inline-flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.quick-links__li {
+	flex: 0 1 auto;
+}
+
+.quick-links__link {
+	padding: 1rem;
+	display: inline-block;
+	color: white;
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 1;
+	text-decoration: none;
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+
+	-webkit-transition: all 200ms;
+	-o-transition: all 200ms;
+	transition: all 200ms;
+}
+
+.quick-links__link:hover {
+	color: white;
+	-webkit-transform: translateY(-5px);
+	-ms-transform: translateY(-5px);
+	-o-transform: translateY(-5px);
+	transform: translateY(-5px);
+}
+
+.quick-links__link::after {
+	content: attr(title);
+	position: absolute;
+	left: 50%;
+	bottom: -1.5rem;
+	transform: translateX(-50%);
+	font-size: 0.7em;
+	font-weight: normal;
+	white-space: nowrap;
+	-webkit-transition: all 200ms;
+	-o-transition: all 200ms;
+	transition: all 200ms;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-filter: none;
+	-o-filter: none;
+	filter: none;
+}
+
+.quick-links__link:hover::after {
+	visibility: visible;
+	opacity: 1;
+}
+
+/*Fixed width for text link*/
+.quick-links__link--fw {
+	width: 4rem;
+	text-align: center;
+}
+
+/* apply drop shadow for any shape icon */
+.quick-links__link--svg {
+	text-shadow: none;
+	-webkit-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)) blur(0);
+	-o-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)) blur(0);
+	filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)) blur(0);
+}
+
+/**
+ * Quotes
+ */
+.quotes {
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.quotes > p {
+	margin: 0;
+}
+
+.quotes__text {
+	width: 100%;
+	text-align: center;
+}
+
+.quotes__text,
+.quotes__author {
+	transition: all 500ms;
+	transform: translateY(0);
+}
+
+.quotes:hover > .quotes__text {
+	transform: translateY(-1.3em);
+}
+
+.quotes:hover > .quotes__author {
+	visibility: visible;
+	opacity: 1;
+}
+
+.quotes__text::before {
+	content: '“';
+}
+
+.quotes__text::after {
+	content: '”';
+}
+
+/* hidden by default */
+.quotes__author {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	transition-duration: 500ms;
+	white-space: nowrap;
+}
+
+/**
+ * The big clock
+ */
+.clock {
+	font-size: 14.5rem;
+	font-weight: 100;
+	letter-spacing: -3px;
+}
+
+/**
+ * Greeting text
+ */
+.greeting {
+	font-size: 4rem;
+	margin: 0;
+	white-space: nowrap;
+}
+
+.greeting__name {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+}
+
+.greeting__name--active > .greeting__name__input {
+	display: inline;
+}
+
+.greeting__name--active > .greeting__name__output {
+	visibility: hidden;
+}
+
+.greeting__name__input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: 0;
+	border-bottom: solid 1px white;
+	background: transparent;
+	color: inherit;
+	font-family: inherit;
+	font-weight: bold;
+	line-height: inherit;
+	padding: 0;
+	margin: 0;
+	width: 20rem;
+	position: absolute;
+	display: none;
+	top: 0;
+}
+/*need this for empty greeting name*/
+.greeting__name__input--empty {
+	position: relative;
+}
+
+.greeting__name__input::-webkit-input-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+.greeting__name__input::-moz-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+.greeting__name__input::-ms-input-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.greeting__name__input:focus {
+	outline: 0;
+}
+
+/**
+ * Photo credit
+ */
+.photo-credit {
+	font-size: 0.8em;
+	display: inline-block;
+}
+
+/**
+ * Modal popup
+ * Shamelessly copied from: http://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/;
+ */
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 50%;
+	max-width: 630px;
+	min-width: 320px;
+	max-height: 80%;
+	overflow: hidden;
+	z-index: 1001;
+	visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	padding-top: 4.5rem; /*space for heading*/
+}
+
+.modal--show {
+	visibility: visible;
+}
+
+.modal__close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 2.2rem;
+}
+
+/* simulate frosted glass effect, image url will be set dynamically */
+.modal__background {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-position: center;
+	background-size: 100vw auto;
+	filter: blur(5px);
+	z-index: 0;
+}
+
+/* modal content styles */
+.modal__content {
+	background: rgba(0, 0, 0, 0.5);
+	position: relative;
+	border-radius: 3px;
+	margin: 0 auto;
+	height: auto;
+	overflow: auto;
+	max-height: 70vh;
+	min-height: 40vh;
+}
+
+.modal__title {
+	margin: 0;
+	padding: 0.5em;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 3px 3px 0 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.modal__body {
+	padding: 2rem;
+}
+
+.modal-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.3);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.modal--show ~ .modal-overlay {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Effect 3: Slide from the bottom, change from origin: apply to container, to avoid
+conflicting with the frosty glass effect*/
+.modal--slide-up {
+	-webkit-transform: translateX(-50%) translateY(-40%);
+	-moz-transform: translateX(-50%) translateY(-40%);
+	-ms-transform: translateX(-50%) translateY(-40%);
+	transform: translateX(-50%) translateY(-40%);
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.modal--show.modal--slide-up {
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 1;
+}
+
+/**
+ * Settings Panel
+ */
+.settings__label {
+	display: inline-block;
+	margin-right: 0.5rem;
+	padding: 1rem 0.5rem;
+}
+
+.settings__text-input {
+	display: inline-block;
+	margin: 0.5rem;
+}
+
+[id='setting-wallpaper-mode-user']:checked ~ [id='setting-photo-selector'] {
+	display: inline-block;
+}
+
+.copyright .icon-btn {
+	padding: 0.5rem;
+}
+
+/**
+ * File input
+ */
+.file-input {
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 20rem;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+
+.file-input:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.file-input > [type='file'] {
+	/*hide native input UI*/
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+/**
+ * Utilities
+ */
+.icon-btn {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: 0;
+	background: none;
+	color: white;
+	padding: 1rem;
+	-webkit-transition: color 200ms ease;
+	-o-transition: color 200ms ease;
+	transition: color 200ms ease;
+}
+
+.icon-btn:hover {
+	color: #977857;
+}
+
+.u-serif-text {
+	font-family: serif;
+}
+
+.u-hidden {
+	display: none;
+}
