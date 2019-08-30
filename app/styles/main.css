@@ -1,18 +1,19 @@
 html {
 	height: 100%;
 	box-sizing: border-box;
-	font-size: 10px; /*for easily calculate up rem*/
+	font-size: 10px;
+	/*for easily calculate up rem*/
 }
 
 /* new approach to global box-sizing */
-*,
-*:before,
-*:after {
+
+*, *:before, *:after {
 	box-sizing: inherit;
 }
 
 body {
-	text-rendering: geometricPrecision; /*this will make thin font not being bolden by subpixel-antialias Chrome*/
+	text-rendering: geometricPrecision;
+	/*this will make thin font not being bolden by subpixel-antialias Chrome*/
 	-webkit-font-smoothing: antialiased;
 	margin: 0;
 	padding: 0;
@@ -20,9 +21,7 @@ body {
 	color: white;
 	font-size: 1.8rem;
 	/*use native font-family for fastest rendering*/
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-		'Droid Sans', 'Helvetica Neue', sans-serif;
-
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	background-position: center center;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -37,8 +36,7 @@ button:focus {
 	outline: none;
 }
 
-a,
-a:visited {
+a, a:visited {
 	color: white;
 	-webkit-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
@@ -54,10 +52,7 @@ a:hover {
 	text-decoration-skip: ink;
 }
 
-[type='radio'],
-[type='check'],
-input + label,
-.settings__label {
+[type='radio'], [type='check'], input+label, .settings__label {
 	cursor: pointer;
 }
 
@@ -68,6 +63,7 @@ fieldset {
 /**
  * Main container
  */
+
 .main {
 	height: 100%;
 	padding: 2rem;
@@ -94,7 +90,6 @@ fieldset {
 
 .main__item--center {
 	grid-area: mc;
-
 	text-align: center;
 	text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
 	/* recipe to vertical align center */
@@ -130,6 +125,7 @@ fieldset {
 /**
  * Wallpaper background
  */
+
 .wallpaper {
 	position: fixed;
 	width: 100%;
@@ -149,18 +145,22 @@ fieldset {
 /**
  * Quick links
  */
+
 .quick-links {
-	margin: -1rem; /* compensate buttons padding */
+	margin: -1rem;
+	/* compensate buttons padding */
 	opacity: 0.5;
 	-webkit-transition: opacity 200ms;
 	-o-transition: opacity 200ms;
 	transition: opacity 200ms;
 }
+
 .quick-links:hover {
 	opacity: 1;
 }
 
 /* Brand logo */
+
 .brand-logo {
 	display: inline-block;
 }
@@ -199,7 +199,6 @@ fieldset {
 	line-height: 1;
 	text-decoration: none;
 	text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-
 	-webkit-transition: all 200ms;
 	-o-transition: all 200ms;
 	transition: all 200ms;
@@ -238,12 +237,14 @@ fieldset {
 }
 
 /*Fixed width for text link*/
+
 .quick-links__link--fw {
 	width: 4rem;
 	text-align: center;
 }
 
 /* apply drop shadow for any shape icon */
+
 .quick-links__link--svg {
 	text-shadow: none;
 	-webkit-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)) blur(0);
@@ -254,11 +255,12 @@ fieldset {
 /**
  * Quotes
  */
+
 .quotes {
 	text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-.quotes > p {
+.quotes>p {
 	margin: 0;
 }
 
@@ -267,17 +269,16 @@ fieldset {
 	text-align: center;
 }
 
-.quotes__text,
-.quotes__author {
+.quotes__text, .quotes__author {
 	transition: all 500ms;
 	transform: translateY(0);
 }
 
-.quotes:hover > .quotes__text {
+.quotes:hover>.quotes__text {
 	transform: translateY(-1.3em);
 }
 
-.quotes:hover > .quotes__author {
+.quotes:hover>.quotes__author {
 	visibility: visible;
 	opacity: 1;
 }
@@ -291,6 +292,7 @@ fieldset {
 }
 
 /* hidden by default */
+
 .quotes__author {
 	visibility: hidden;
 	opacity: 0;
@@ -305,6 +307,7 @@ fieldset {
 /**
  * The big clock
  */
+
 .clock {
 	font-size: 14.5rem;
 	font-weight: 100;
@@ -314,6 +317,7 @@ fieldset {
 /**
  * Greeting text
  */
+
 .greeting {
 	font-size: 4rem;
 	margin: 0;
@@ -326,11 +330,11 @@ fieldset {
 	position: relative;
 }
 
-.greeting__name--active > .greeting__name__input {
+.greeting__name--active>.greeting__name__input {
 	display: inline;
 }
 
-.greeting__name--active > .greeting__name__output {
+.greeting__name--active>.greeting__name__output {
 	visibility: hidden;
 }
 
@@ -352,7 +356,9 @@ fieldset {
 	display: none;
 	top: 0;
 }
+
 /*need this for empty greeting name*/
+
 .greeting__name__input--empty {
 	position: relative;
 }
@@ -360,9 +366,11 @@ fieldset {
 .greeting__name__input::-webkit-input-placeholder {
 	color: rgba(255, 255, 255, 0.8);
 }
+
 .greeting__name__input::-moz-placeholder {
 	color: rgba(255, 255, 255, 0.8);
 }
+
 .greeting__name__input::-ms-input-placeholder {
 	color: rgba(255, 255, 255, 0.8);
 }
@@ -374,6 +382,7 @@ fieldset {
 /**
  * Photo credit
  */
+
 .photo-credit {
 	font-size: 0.8em;
 	display: inline-block;
@@ -383,6 +392,7 @@ fieldset {
  * Modal popup
  * Shamelessly copied from: http://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/;
  */
+
 .modal {
 	position: fixed;
 	top: 50%;
@@ -401,7 +411,8 @@ fieldset {
 	-moz-transform: translateX(-50%) translateY(-50%);
 	-ms-transform: translateX(-50%) translateY(-50%);
 	transform: translateX(-50%) translateY(-50%);
-	padding-top: 4.5rem; /*space for heading*/
+	padding-top: 4.5rem;
+	/*space for heading*/
 }
 
 .modal--show {
@@ -416,6 +427,7 @@ fieldset {
 }
 
 /* simulate frosted glass effect, image url will be set dynamically */
+
 .modal__background {
 	position: absolute;
 	top: 0;
@@ -429,6 +441,7 @@ fieldset {
 }
 
 /* modal content styles */
+
 .modal__content {
 	background: rgba(0, 0, 0, 0.5);
 	position: relative;
@@ -470,13 +483,14 @@ fieldset {
 	transition: all 0.3s;
 }
 
-.modal--show ~ .modal-overlay {
+.modal--show~.modal-overlay {
 	opacity: 1;
 	visibility: visible;
 }
 
 /* Effect 3: Slide from the bottom, change from origin: apply to container, to avoid
 conflicting with the frosty glass effect*/
+
 .modal--slide-up {
 	-webkit-transform: translateX(-50%) translateY(-40%);
 	-moz-transform: translateX(-50%) translateY(-40%);
@@ -499,6 +513,7 @@ conflicting with the frosty glass effect*/
 /**
  * Settings Panel
  */
+
 .settings__label {
 	display: inline-block;
 	margin-right: 0.5rem;
@@ -510,7 +525,7 @@ conflicting with the frosty glass effect*/
 	margin: 0.5rem;
 }
 
-[id='setting-wallpaper-mode-user']:checked ~ [id='setting-photo-selector'] {
+[id='setting-wallpaper-mode-user']:checked~[id='setting-photo-selector'] {
 	display: inline-block;
 }
 
@@ -521,6 +536,7 @@ conflicting with the frosty glass effect*/
 /**
  * File input
  */
+
 .file-input {
 	cursor: pointer;
 	white-space: nowrap;
@@ -534,7 +550,7 @@ conflicting with the frosty glass effect*/
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.file-input > [type='file'] {
+.file-input>[type='file'] {
 	/*hide native input UI*/
 	width: 0.1px;
 	height: 0.1px;
@@ -547,6 +563,7 @@ conflicting with the frosty glass effect*/
 /**
  * Utilities
  */
+
 .icon-btn {
 	-webkit-appearance: none;
 	-moz-appearance: none;

@@ -2,36 +2,6 @@
  * @author Thanh
  */
 /*eslint-disable no-use-before-define, max-len*/
-import { Settings } from './config';
-
-const Quotes = {
-	init(selector) {
-		this.quotation = $(selector);
-		this.quoteEl = $('.quotes__text', this.quotation);
-		this.authorEl = $('.quotes__author', this.quotation);
-		if (!this.quotation || !this.quoteEl || !this.authorEl) {
-			throw new Error('Quotes::start elements cannot be found');
-		}
-
-		this.render();
-	},
-
-	render() {
-		const quote = this.getQuote();
-		this.quoteEl.textContent = quote[0];
-		this.authorEl.textContent = quote[1];
-	},
-
-	getQuote() {
-		const quoteList = Settings.get('language') === 'vi' ? quotesVI : quotesEN;
-
-		const randomQuote = Math.floor(Math.random() * quoteList.length);
-
-		return quoteList[randomQuote];
-	},
-};
-
-export default Quotes;
 
 // Most of the quotations are from Momentum
 const quotesEN = [
