@@ -30,20 +30,23 @@ quotetextEl.textContent = quotesEN[pickquote][0];
 quoteauthorEl.textContent = quotesEN[pickquote][1];
 
 // open and close modal setting
+//select setting and close button
 const settingEl = document.querySelector('#settings-btn');
 const settingModalEl = document.querySelector('#settings-modal');
 const settingCloseBtnEl = document.querySelector('#settings-close-btn');
 const bodyEl = document.querySelector('body');
+
+//clicked settings button
 settingEl.addEventListener('click', (event) => {
     event.stopPropagation();
     settingModalEl.classList.toggle('modal--show');
 })
-
+//clicked close modal button
 settingCloseBtnEl.addEventListener('click', (event) => {
-    event.stopPropagation();
     settingModalEl.classList.remove('modal--show');
 })
 
+//clicked outside of modal menu to collapse it
 bodyEl.addEventListener('click', event => {
     console.log(event.target.closest('.modal'));
     if (settingModalEl.classList.contains('modal--show') == true) {
@@ -53,5 +56,26 @@ bodyEl.addEventListener('click', event => {
     }
 })
 
+//render quicklinks in nau-tab
+const quickLinksEl = document.querySelector('#quicklinks');
+
+quicklinks.forEach(element => {
+    const liEl = document.createElement('li');
+    const aEl = document.createElement('a');
+    liEl.className = "quick-links__li";
+    aEl.className = "quick-links__link mdi";
+    liEl.id = element.id;
+    aEl.href = element.url;
+    aEl.title = element.title;
+    if (element.id === 'thanhnien' || element.id === 'vnexpress' || element.id === 'tuoitre') {
+        aEl.classList.add('quick-links__link--fw');
+        const spanEl = document.createElement('span');
+        spanEl.className = "u-serif-text";
+        spanEl.textContent = element.id === 'thanhnien' ? "Tn" : element.id === 'vnexpress' ? "vE" : "tt";
+        aEl.appendChild(spanEl);
+    } else aEl.classList.add(element.icon);
+    liEl.appendChild(aEl);
+    quickLinksEl.appendChild(liEl);
+});
 
 
