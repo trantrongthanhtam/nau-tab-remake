@@ -130,7 +130,7 @@ function timePass() {
         timeHasPass = nowTime - checkTime;
     } else timeHasPass = 0;
     localStorage.setItem('Last Time Open', Date.parse(nowTime));
-    return timeHasPass = 5000000;
+    return timeHasPass;
 }
 
 function update() {
